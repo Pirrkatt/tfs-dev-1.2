@@ -2135,7 +2135,7 @@
 	<item id="2152" article="a" name="platinum coin">
 		<attribute key="weight" value="10" />
 	</item>
-	<item id="2153" article="a" name="violet gem">
+	<item id="2153" article="a" name="AutoLoot Stone">
 		<attribute key="weight" value="30" />
 	</item>
 	<item id="2154" article="a" name="yellow gem">

@@ -6,3 +6,6 @@ dofile('data/lib/compat/compat.lua')
 
 -- Debugging helper function for Lua developers
 dofile('data/lib/debugging/dump.lua')
+
+-- Additional libraries
+dofile('data/lib/autoloot.lua')

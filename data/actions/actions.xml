@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
-	<!-- Quests -->
+	<!-- Systems -->
+	<action itemid="2153" script="systems/autoloot_stone.lua" />
+
 	<action itemid="11219" script="systems/compass.lua" />
 	<action itemid="19514" script="systems/shovel.lua" />
 	<action itemid="19521" script="systems/shovel.lua" />
 	<action itemid="19515" script="systems/shovel.lua" />
 	<action itemid="19513" script="systems/shovel.lua" />
 
+	<!-- Quests -->
 	<action itemid="1740" script="quests/quests.lua" />
 	<action fromid="1747" toid="1749" script="quests/quests.lua" />
 	<action uniqueid="30015" script="quests/annihilator.lua" />

@@ -498,6 +498,12 @@ void Monster::onCreatureLeave(Creature* creature)
 			updateIdleStatus();
 		}
 	}
+
+	//Teleport autoLoot summon to target if master leaves sight
+	if (isSummon() && isAutoLooter() && getMaster() == creature) {
+		g_game.internalTeleport(this, getMaster()->getPosition(), false);
+		g_game.addMagicEffect(getPosition(), CONST_ME_TELEPORT);
+	}
 }
 
 bool Monster::searchTarget(TargetSearchType_t searchType /*= TARGETSEARCH_DEFAULT*/)

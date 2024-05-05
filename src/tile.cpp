@@ -492,7 +492,9 @@ ReturnValue Tile::queryAdd(int32_t, const Thing& thing, uint32_t, uint32_t flags
 		}
 
 		if (const Monster* monster = creature->getMonster()) {
-			if (hasFlag(TILESTATE_PROTECTIONZONE | TILESTATE_FLOORCHANGE | TILESTATE_TELEPORT)) {
+			if (!(monster->isSummon() && monster->isAutoLooter()) && hasFlag(TILESTATE_PROTECTIONZONE)) {
+				return RETURNVALUE_NOTPOSSIBLE;
+			} else if (hasFlag(TILESTATE_FLOORCHANGE | TILESTATE_TELEPORT)) {
 				return RETURNVALUE_NOTPOSSIBLE;
 			}
 

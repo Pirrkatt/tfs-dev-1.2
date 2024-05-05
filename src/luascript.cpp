@@ -1812,6 +1812,7 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Game", "getMonsterCount", LuaScriptInterface::luaGameGetMonsterCount);
 	registerMethod("Game", "getPlayerCount", LuaScriptInterface::luaGameGetPlayerCount);
 	registerMethod("Game", "getNpcCount", LuaScriptInterface::luaGameGetNpcCount);
+	registerMethod("Game", "getItemTypeByClientId", LuaScriptInterface::luaGameGetItemTypeByClientId);
 
 	registerMethod("Game", "getTowns", LuaScriptInterface::luaGameGetTowns);
 	registerMethod("Game", "getHouses", LuaScriptInterface::luaGameGetHouses);
@@ -2047,6 +2048,9 @@ void LuaScriptInterface::registerFunctions()
 
 	registerMethod("Creature", "getMaster", LuaScriptInterface::luaCreatureGetMaster);
 	registerMethod("Creature", "setMaster", LuaScriptInterface::luaCreatureSetMaster);
+
+	registerMethod("Creature", "isAutoLooter", LuaScriptInterface::luaCreatureIsAutoLooter);
+	registerMethod("Creature", "setAutoLooter", LuaScriptInterface::luaCreatureSetAutoLooter);
 
 	registerMethod("Creature", "getLight", LuaScriptInterface::luaCreatureGetLight);
 	registerMethod("Creature", "setLight", LuaScriptInterface::luaCreatureSetLight);
@@ -4176,6 +4180,21 @@ int LuaScriptInterface::luaGameGetNpcCount(lua_State* L)
 {
 	// Game.getNpcCount()
 	lua_pushnumber(L, g_game.getNpcsOnline());
+	return 1;
+}
+
+int LuaScriptInterface::luaGameGetItemTypeByClientId(lua_State* L)
+{
+	// Game.getItemTypeByClientId(clientId)
+	uint16_t spriteId = getNumber<uint16_t>(L, 1);
+	const ItemType& itemType = Item::items.getItemIdByClientId(spriteId);
+	if (itemType.id != 0) {
+		pushUserdata<const ItemType>(L, &itemType);
+		setMetatable(L, -1, "ItemType");
+	} else {
+		lua_pushnil(L);
+	}
+
 	return 1;
 }
 
@@ -6879,6 +6898,31 @@ int LuaScriptInterface::luaCreatureSetMaster(lua_State* L)
 		pushBoolean(L, true);
 	}
 	g_game.updateCreatureType(creature);
+	return 1;
+}
+
+int LuaScriptInterface::luaCreatureIsAutoLooter(lua_State* L)
+{
+	// creature:isAutoLooter()
+	const Creature* creature = getUserdata<const Creature>(L, 1);
+	if (creature) {
+		pushBoolean(L, creature->isAutoLooter());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaCreatureSetAutoLooter(lua_State* L)
+{
+	// creature:setAutoLooter(autoLooter)
+	Creature* creature = getUserdata<Creature>(L, 1);
+	if (creature) {
+		creature->setAutoLooter(getBoolean(L, 2));
+		pushBoolean(L, true);
+	} else {
+		lua_pushnil(L);
+	}
 	return 1;
 }
 

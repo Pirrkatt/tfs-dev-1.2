@@ -2805,6 +2805,7 @@ void ProtocolGame::AddCreature(NetworkMessage& msg, const Creature* creature, bo
 
 	msg.addByte(player->getSkullClient(creature));
 	msg.addByte(player->getPartyShield(otherPlayer));
+	msg.addByte(creature->isAutoLooter());
 
 	if (!known) {
 		msg.addByte(player->getGuildEmblem(otherPlayer));
