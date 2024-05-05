@@ -200,6 +200,7 @@ class Monster final : public Creature
 
 		bool isIdle = true;
 		bool extraMeleeAttack = false;
+		bool isImmobile = false;
 		bool isMasterInRange = false;
 
 		void onCreatureEnter(Creature* creature);
@@ -224,6 +225,11 @@ class Monster final : public Creature
 		void updateIdleStatus();
 		bool getIdleStatus() const {
 			return isIdle;
+		}
+
+		void setImmobile(bool immobile);
+		bool getImmobileStatus() const {
+			return isImmobile;
 		}
 
 		void onAddCondition(ConditionType_t type) final;

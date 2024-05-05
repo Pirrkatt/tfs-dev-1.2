@@ -2262,6 +2262,9 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Monster", "isIdle", LuaScriptInterface::luaMonsterIsIdle);
 	registerMethod("Monster", "setIdle", LuaScriptInterface::luaMonsterSetIdle);
 
+	registerMethod("Monster", "isImmobile", LuaScriptInterface::luaMonsterIsImmobile);
+	registerMethod("Monster", "setImmobile", LuaScriptInterface::luaMonsterSetImmobile);
+
 	registerMethod("Monster", "isTarget", LuaScriptInterface::luaMonsterIsTarget);
 	registerMethod("Monster", "isOpponent", LuaScriptInterface::luaMonsterIsOpponent);
 	registerMethod("Monster", "isFriend", LuaScriptInterface::luaMonsterIsFriend);
@@ -9380,6 +9383,32 @@ int LuaScriptInterface::luaMonsterSetIdle(lua_State* L)
 	}
 
 	monster->setIdle(getBoolean(L, 2));
+	pushBoolean(L, true);
+	return 1;
+}
+
+int LuaScriptInterface::luaMonsterIsImmobile(lua_State* L)
+{
+	// monster:isImmobile()
+	Monster* monster = getUserdata<Monster>(L, 1);
+	if (monster) {
+		pushBoolean(L, monster->getImmobileStatus());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaMonsterSetImmobile(lua_State* L)
+{
+	// monster:setImmobile(immobile)
+	Monster* monster = getUserdata<Monster>(L, 1);
+	if (!monster) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	monster->setImmobile(getBoolean(L, 2));
 	pushBoolean(L, true);
 	return 1;
 }

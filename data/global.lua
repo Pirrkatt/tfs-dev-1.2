@@ -12,6 +12,14 @@ questDoors = {1223, 1225, 1241, 1243, 1255, 1257, 3542, 3551, 5105, 5114, 5123, 
 levelDoors = {1227, 1229, 1245, 1247, 1259, 1261, 3540, 3549, 5103, 5112, 5121, 5130, 5292, 5294, 6206, 6208, 6263, 6265, 6896, 6905, 7038, 7047, 8555, 8557, 9179, 9181, 9281, 9283, 10282, 10284, 10473, 10482, 10780, 10789, 10780, 12095, 12102, 12204, 12195, 19845, 19854, 19985, 19994, 20278, 20287}
 keys = {2086, 2087, 2088, 2089, 2090, 2091, 2092, 10032}
 
+---@description Corrects the positions of larger Magic Effects to ensure proper alignment.
+---@param position Position[] Desired position where the effect should appear.
+---@param offset number Amount of SQMs by which the effect is currently offset.
+---@return Position[] Corrected position of the effect after applying the offset.
+function setEffectOffset(position, offset)
+	return Position(position.x + offset, position.y + offset, position.z)
+end
+
 function getDistanceBetween(firstPosition, secondPosition)
 	local xDif = math.abs(firstPosition.x - secondPosition.x)
 	local yDif = math.abs(firstPosition.y - secondPosition.y)

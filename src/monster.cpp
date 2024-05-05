@@ -642,6 +642,20 @@ void Monster::setIdle(bool idle)
 	}
 }
 
+void Monster::setImmobile(bool immobile)
+{
+	if (isRemoved() || getHealth() <= 0) {
+		return;
+	}
+
+	isImmobile = immobile;
+
+	if (isImmobile) {
+		cancelNextWalk = true;
+		stopEventWalk();
+	}
+}
+
 void Monster::updateIdleStatus()
 {
 	bool idle = false;
@@ -707,7 +721,7 @@ void Monster::onThink(uint32_t interval)
 	} else {
 		updateIdleStatus();
 
-		if (!isIdle) {
+		if (!isIdle && !isImmobile) {
 			addEventWalk();
 
 			if (isSummon()) {
