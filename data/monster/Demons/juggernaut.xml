@@ -56,7 +56,7 @@
 		<item name="gold coin" countmax="100" chance="100000" />
 		<item name="small emerald" countmax="5" chance="20000" />
 		<item name="platinum coin" countmax="15" chance="100000" />
-		<item name="violet gem" chance="830" />
+		<!-- <item name="violet gem" chance="830" /> -->
 		<item name="green gem" chance="869" />
 		<item name="red gem" chance="13850" />
 		<item id="2228" chance="600" /><!-- broken pottery -->

@@ -59,7 +59,7 @@
 		<item name="emerald bangle" chance="20000" />
 		<item name="gold coin" countmax="100" chance="100000" />
 		<item name="platinum coin" countmax="30" chance="16666" />
-		<item name="violet gem" chance="16666" />
+		<!-- <item name="violet gem" chance="16666" /> -->
 		<item name="yellow gem" chance="20000" />
 		<item name="green gem" chance="12500" />
 		<item name="red gem" chance="20000" />
