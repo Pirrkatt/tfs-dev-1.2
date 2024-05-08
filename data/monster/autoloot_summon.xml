@@ -15,5 +15,6 @@
 		<flag targetdistance="1" />
 		<flag staticattack="90" />
 		<flag runonhealth="0" />
+		<flag autolooter="1" />
 	</flags>
 </monster>

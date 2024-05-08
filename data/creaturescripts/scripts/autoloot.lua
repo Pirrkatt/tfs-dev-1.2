@@ -56,7 +56,7 @@ local function scanContainer(cid, position)
             if containerItem then
                 if table.contains(player:getAutoLootList(), containerItem:getId()) then
                     if not containerItem:moveTo(player) then
-                        player:sendTextMessage(MESSAGE_INFO_DESCR,"You did not have enough space to pick up the AutoLooted items!")
+                        player:sendTextMessage(MESSAGE_INFO_DESCR, "You did not have enough space to pick up the AutoLooted items!")
                         return
                     end
                     table.insert(itemsLooted, containerItem:getCount() .. "x " .. containerItem:getName())

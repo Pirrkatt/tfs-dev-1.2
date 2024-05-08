@@ -2050,7 +2050,6 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Creature", "setMaster", LuaScriptInterface::luaCreatureSetMaster);
 
 	registerMethod("Creature", "isAutoLooter", LuaScriptInterface::luaCreatureIsAutoLooter);
-	registerMethod("Creature", "setAutoLooter", LuaScriptInterface::luaCreatureSetAutoLooter);
 
 	registerMethod("Creature", "getLight", LuaScriptInterface::luaCreatureGetLight);
 	registerMethod("Creature", "setLight", LuaScriptInterface::luaCreatureSetLight);
@@ -2485,6 +2484,7 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("MonsterType", "isHostile", LuaScriptInterface::luaMonsterTypeIsHostile);
 	registerMethod("MonsterType", "isPushable", LuaScriptInterface::luaMonsterTypeIsPushable);
 	registerMethod("MonsterType", "isHealthShown", LuaScriptInterface::luaMonsterTypeIsHealthShown);
+	registerMethod("MonsterType", "isAutoLooter", LuaScriptInterface::luaMonsterTypeIsAutoLooter);
 
 	registerMethod("MonsterType", "canPushItems", LuaScriptInterface::luaMonsterTypeCanPushItems);
 	registerMethod("MonsterType", "canPushCreatures", LuaScriptInterface::luaMonsterTypeCanPushCreatures);
@@ -6904,22 +6904,9 @@ int LuaScriptInterface::luaCreatureSetMaster(lua_State* L)
 int LuaScriptInterface::luaCreatureIsAutoLooter(lua_State* L)
 {
 	// creature:isAutoLooter()
-	const Creature* creature = getUserdata<const Creature>(L, 1);
-	if (creature) {
-		pushBoolean(L, creature->isAutoLooter());
-	} else {
-		lua_pushnil(L);
-	}
-	return 1;
-}
-
-int LuaScriptInterface::luaCreatureSetAutoLooter(lua_State* L)
-{
-	// creature:setAutoLooter(autoLooter)
 	Creature* creature = getUserdata<Creature>(L, 1);
 	if (creature) {
-		creature->setAutoLooter(getBoolean(L, 2));
-		pushBoolean(L, true);
+		pushBoolean(L, creature->isAutoLooter());
 	} else {
 		lua_pushnil(L);
 	}
@@ -11518,6 +11505,18 @@ int LuaScriptInterface::luaMonsterTypeIsHealthShown(lua_State* L)
 	MonsterType* monsterType = getUserdata<MonsterType>(L, 1);
 	if (monsterType) {
 		pushBoolean(L, !monsterType->info.hiddenHealth);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaMonsterTypeIsAutoLooter(lua_State* L)
+{
+	// monsterType:isAutoLooter()
+	MonsterType* monsterType = getUserdata<MonsterType>(L, 1);
+	if (monsterType) {
+		pushBoolean(L, monsterType->info.isAutoLooter);
 	} else {
 		lua_pushnil(L);
 	}

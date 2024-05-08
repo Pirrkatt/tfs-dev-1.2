@@ -737,6 +737,8 @@ bool Monsters::loadMonster(const std::string& file, const std::string& monsterNa
 				mType->info.isIllusionable = attr.as_bool();
 			} else if (strcasecmp(attrName, "convinceable") == 0) {
 				mType->info.isConvinceable = attr.as_bool();
+			} else if (strcasecmp(attrName, "autolooter") == 0) {
+				mType->info.isAutoLooter = attr.as_bool();
 			} else if (strcasecmp(attrName, "pushable") == 0) {
 				mType->info.pushable = attr.as_bool();
 			} else if (strcasecmp(attrName, "canpushitems") == 0) {

@@ -761,7 +761,6 @@ class LuaScriptInterface
 		static int luaCreatureSetMaster(lua_State* L);
 
 		static int luaCreatureIsAutoLooter(lua_State* L);
-		static int luaCreatureSetAutoLooter(lua_State* L);
 
 		static int luaCreatureGetLight(lua_State* L);
 		static int luaCreatureSetLight(lua_State* L);
@@ -1178,6 +1177,7 @@ class LuaScriptInterface
 
 		static int luaMonsterTypeIsAttackable(lua_State* L);
 		static int luaMonsterTypeIsConvinceable(lua_State* L);
+		static int luaMonsterTypeIsAutoLooter(lua_State* L);
 		static int luaMonsterTypeIsSummonable(lua_State* L);
 		static int luaMonsterTypeIsIllusionable(lua_State* L);
 		static int luaMonsterTypeIsHostile(lua_State* L);

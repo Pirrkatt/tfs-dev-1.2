@@ -286,12 +286,8 @@ class Creature : virtual public Thing
 			return master;
 		}
 
-		bool isAutoLooter() const {
-			return m_autoLooter;
-		}
-
-		void setAutoLooter(bool autoLooter) {
-			m_autoLooter = autoLooter;
+		virtual bool isAutoLooter() const {
+			return false;
 		}
 
 		void addSummon(Creature* creature);
@@ -540,7 +536,6 @@ class Creature : virtual public Thing
 		bool hasFollowPath = false;
 		bool forceUpdateFollowPath = false;
 		bool hiddenHealth = false;
-		bool m_autoLooter = false;
 
 		//creature script events
 		bool hasEventRegistered(CreatureEventType_t event) const {

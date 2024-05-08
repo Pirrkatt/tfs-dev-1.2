@@ -29,11 +29,9 @@ function Player.spawnAutoLooter(self)
     local summon = Game.createMonster("AutoLooter", self:getPosition(), false, true)
     if summon then
         summon:setMaster(self)
-        summon:setAutoLooter(true)
         summon:rename(self:getCurrentAutoLootSkin().name)
         summon:setOutfit({lookType = self:getCurrentAutoLootSkin().lookType})
         summon:changeSpeed(self:getBaseSpeed())
-        return
     end
 end
 
@@ -44,6 +42,7 @@ function Player.despawnAutoLooter(self)
 
     for _, summon in ipairs(self:getSummons()) do
         if summon and summon:isAutoLooter() then
+            summon:setMaster(nil)
             summon:getPosition():sendMagicEffect(CONST_ME_POFF)
             summon:remove()
         end

@@ -144,6 +144,7 @@ class MonsterType
 		bool isAttackable = true;
 		bool isHostile = true;
 		bool hiddenHealth = false;
+		bool isAutoLooter = false;
 	};
 
 	public:
